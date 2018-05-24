@@ -1,0 +1,12 @@
+[submodule "cgimap"]
+	path = containers/cgimap/src/openstreetmap-cgimap
+	url = https://github.com/zerebubuth/openstreetmap-cgimap
+[submodule "libpgosm"]
+	path = containers/postgis/src/libpgosm
+	url = https://github.com/pnorman/libpgosm
+[submodule "rails"]
+	path = containers/rails/src
+	url = https://github.com/openstreetmap/openstreetmap-website
+[submodule "osmosis"]
+	path = containers/osmosis/src/osmosis
+	url = https://github.com/openstreetmap/osmosis
