@@ -1,5 +1,5 @@
 [submodule "cgimap"]
-	path = containers/cgimap/src/openstreetmap-cgimap
+	path = containers/cgimap/src/cgimap
 	url = https://github.com/zerebubuth/openstreetmap-cgimap
 [submodule "libpgosm"]
 	path = containers/postgis/src/libpgosm
