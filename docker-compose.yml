@@ -1,0 +1,58 @@
+version: '3'
+services:
+  rails:
+    build: ./containers/rails
+    links:
+      - "postgis"
+    environment:
+      - DB_HOST=postgis
+      - DB_PASS=insecurelocalpassword
+      - DB_USER=postgres
+      - RAILS_ENV=development
+  cgimap:
+    build: ./containers/cgimap
+    links:
+      - "postgis"
+    environment:
+      - CGIMAP_HOST=postgis
+      - CGIMAP_DBNAME=development
+      - CGIMAP_PASSWORD=insecurelocalpassword
+      - CGIMAP_USERNAME=postgres
+      - POLL_ATTEMPTS=25
+      - POLL_TIMER=15
+    volumes:
+      - "./volumes/nginx-static:/www/data"
+  postgis:
+    build: ./containers/postgis
+    ports:
+      - "5432:5432"
+    environment:
+      - PG_DATA=/usr/local/data
+      - DB_USER=postgres
+      - DB_NAME=development
+      - DB_PASS=insecurelocalpassword
+      - SKIP_CONSTRAINTS=false
+    volumes:
+      - "./volumes/postgis:/usr/local/data"
+  nginx:
+    build: ./containers/nginx
+    links:
+      - cgimap
+      - rails
+    ports:
+      - "8000:80"
+    volumes:
+      - "./volumes/nginx-static:/www/data"
+  osmosis:
+    build: ./containers/osmosis
+    links:
+      - postgis
+    environment:
+      - DB_PASS=insecurelocalpassword
+      - DB_HOST=postgis
+      - DB_USER=postgres
+      - DB_NAME=development
+      - IMPORT_STATUS_FILE=/usr/local/data/status/import_status
+    volumes:
+      - "./volumes/nginx-static:/usr/local/data/htdocs"
+      - "./volumes/status:/usr/local/data/status"
