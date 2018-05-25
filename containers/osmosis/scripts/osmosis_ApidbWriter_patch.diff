@@ -1,0 +1,35 @@
+109c109
+<             + " FROM nodes WHERE node_id >= ? AND node_id < ?";
+---
+>             + " FROM nodes WHERE node_id >= ? AND node_id < ?" + " ON CONFLICT DO NOTHING";
+112c112
+<     	"INSERT INTO current_node_tags SELECT node_id, k, v FROM node_tags WHERE node_id >= ? AND node_id < ?";
+---
+>     	"INSERT INTO current_node_tags SELECT node_id, k, v FROM node_tags WHERE node_id >= ? AND node_id < ?" + " ON CONFLICT DO NOTHING";
+118c118
+<             + WHERE_WAY_ID_IN_RANGE;
+---
+>             + WHERE_WAY_ID_IN_RANGE + " ON CONFLICT DO NOTHING";
+122c122
+<             + WHERE_WAY_ID_IN_RANGE;
+---
+>             + WHERE_WAY_ID_IN_RANGE + " ON CONFLICT DO NOTHING";
+126c126
+<             + WHERE_WAY_ID_IN_RANGE;
+---
+>             + WHERE_WAY_ID_IN_RANGE + " ON CONFLICT DO NOTHING";
+130c130
+<             + " FROM relations WHERE relation_id >= ? AND relation_id < ?";
+---
+>             + " FROM relations WHERE relation_id >= ? AND relation_id < ?" + " ON CONFLICT DO NOTHING";
+134c134
+<             + " WHERE relation_id >= ? AND relation_id < ?";
+---
+>             + " WHERE relation_id >= ? AND relation_id < ?" + " ON CONFLICT DO NOTHING";
+139c139
+<             + " FROM relation_members WHERE relation_id >= ? AND relation_id < ?";
+---
+>             + " FROM relation_members WHERE relation_id >= ? AND relation_id < ?" + " ON CONFLICT DO NOTHING";
+291a292,293
+>         buffer.append(" ON CONFLICT DO NOTHING");
+> 
