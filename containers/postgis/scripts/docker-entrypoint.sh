@@ -38,6 +38,4 @@ $SCRIPT_PATH/install-libpgosm.sh
 
 echo "DB ready."
 
-$SCRIPT_PATH/set-state.sh "READY"
-
 tail -f $PGLOGS
