@@ -40,18 +40,18 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.delivery_method = :smtp 
 
-  if ENV['URL_HOST']
-    SERVER_URL = ENV['URL_HOST']
-    config.action_mailer.default_url_options = {
-      protocol: 'https'
-    }
-    Rails.application.routes.draw do
-      default_url_options protocol: :https
-    end
+  config.action_mailer.default_url_options = {
+    protocol: 'https',
+    host: 'localhost:8000'
+  }
+
+  Rails.application.routes.draw do
+    default_url_options protocol: :https
   end
+
 end
 
 CSP_ENFORCE = true  # Stops a fatal error at boot time.
