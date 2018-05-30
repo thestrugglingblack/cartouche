@@ -9,6 +9,8 @@ services:
       - DB_PASS=insecurelocalpassword
       - DB_USER=postgres
       - RAILS_ENV=development
+    volumes:
+      - "./volumes/nginx-static:/www/data"
   cgimap:
     build: ./containers/cgimap
     links:
