@@ -1,0 +1,2 @@
+volumes/nginx-static
+volumes/postgis
